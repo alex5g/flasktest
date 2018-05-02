@@ -1,0 +1,14 @@
+{% extends 'base.html' %}  #声明继承
+{% import "bootstrap/wtf.html" as wtf  %}#bootstrap渲染表单
+
+{% block title  %}我有好多东西想告诉你~{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>来啊,让我好好了解你</h1>
+</div>
+{{ wtf.quick_form(form) }}
+{% endblock %}
+{% block navbar %}
+    {{ nav.top.render() }}
+{% endblock %}
