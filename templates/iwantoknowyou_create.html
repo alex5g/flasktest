@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf  %}
+
+{% block title  %}输入你的表格信息~{% endblock %}
+{% block page_content %}
+<div class="page-header">
+    <h1>你的id是:{{ tableid }},请牢记</h1>
+    <h1>你想了解别人些什么?</h1>
+</div>
+{{ wtf.quick_form(form) }}
+{% endblock %}
+{% block navbar %}
+    {{ nav.top.render() }}
+{% endblock %}
