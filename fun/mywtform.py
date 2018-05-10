@@ -14,9 +14,21 @@ class DynamicForm(FlaskForm):
         pass
 
 class readytocreate(FlaskForm):
-    sel=RadioField(choices=[('true','是'),('false','你猜')])
+    sel=RadioField(choices=[('1','是'),('2','你猜'),('3','好好看看我是谁')])
     submit=SubmitField('我已经遵从我内心的选择')
 
-class checkmaster(FlaskForm):
-    id=StringField('输入表格id',validators=[required()])
-    submit=SubmitField('下一步')
+class verifyidform(FlaskForm):
+    tableid=StringField('告诉我你的真身,master',validators=[required()])
+    submit=SubmitField('来吧')
+
+class readytofillform(FlaskForm):
+    id=StringField('告诉我你需要导出的表的唯一id',validators=[required()])
+    password=StringField('输入密码,确保你是创建者',validators=[required()])
+    submit=SubmitField('未来可期')
+
+class fillform(FlaskForm):
+    pass
+
+class thelastusform(FlaskForm):
+    submit=SubmitField('来日方长,see you again')
+#class checkid

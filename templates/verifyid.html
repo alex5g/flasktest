@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf  %}
+{% block title  %}你是遵循我的召唤而来吗?{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>master?让我看看你的真身</h1>
+</div>
+{{ wtf.quick_form(form) }}
+{% endblock %}
+
+{% block navbar %}
+    {{ nav.top.render() }}
+{% endblock %}

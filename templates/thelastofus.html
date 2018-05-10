@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf  %}
+{% block title  %}The last of us{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Master,这是我们的最后一步,我已经做好了最坏的打算,你呢?</h1>
+    <h2>当前已有{{ i }}个追随者</h2>
+</div>
+{{ wtf.quick_form(form) }}
+{% endblock %}
+
+{% block navbar %}
+    {{ nav.top.render() }}
+{% endblock %}

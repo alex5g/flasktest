@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf  %}
+{% block title  %}master,这是最后一步前的最后一步{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>master,这是最后一步前的最后一步</h1>
+</div>
+{{ wtf.quick_form(form) }}
+{% endblock %}
+{% block navbar %}
+    {{ nav.top.render() }}
+{% endblock %}
