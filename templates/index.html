@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 {% block title %}皖声{% endblock %}
-{% block page_content %}
-<div align="center" style="display: block">
-    {#  <h1>2015.1.25-2018.5.6</h1> #}
-    <h1>对,我已做好最坏的打算</h1>
-    {#  <h1>还好吻过你的脸</h1>
-    <h1>高三时就想做给你看了,一直拖到今天</h1>
-    <h1>可惜整体和当初想的还是有差距</h1>
-    <h1>不过没关系,反正你也不会上心,也不会看的</h1>
-    <h1>我认输,我承认有时候努力也没用,有些事注定改变不了</h1> #}
+{% block content %}
+<div class="container">
+    {%  for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button"   class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% block page_content %}
+        <div align="center" style="display: block">
+        <h1>2015.1.25-2018.5.6</h1>
+        <h2>对,我已做好最坏的打算</h2>
+        </div>
+    {% endblock %}
 </div>
 {% endblock %}
+
 {% block navbar %}
     {{ nav.top.render() }}
 {% endblock %}

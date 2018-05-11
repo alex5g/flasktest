@@ -58,6 +58,7 @@ def IWantToKnowYouCreate():
             datas.append(form.__getattribute__(str(i)).data)
             i=i+1
         addnewtablecolnames(tablecols,tableid,datas)
+        return redirect(url_for('index')),flash("你已创建完成 牢记你的id")
     return render_template('iwantoknowyou_create.html',form=form,tableid=tableid)
 
 @app.route('/knowmore')     #comingsoon页面
@@ -70,7 +71,7 @@ def verifyid():
     if form.validate_on_submit():
         tableid=form.tableid.data
         if(checkuniqueid(tableid) is None):
-            pass#暂缺,提示信息错误
+            return redirect(url_for('index')), flash("你输入的id不存在,已将你重定向到主页")
         else:
             session['checkid']=True
             session['tableid']=tableid
@@ -98,6 +99,7 @@ def fillintheform():
                 i=i+1
             db.create_all()
             writetotable(session['tableid'], tablecols, datas)
+            return redirect(url_for('index')), flash("你已成功提交信息")
     return render_template('fillinthefom.html',form=form)
 
 
@@ -122,7 +124,7 @@ def readytofill():
         password=form.password.data
         result = tableinfo.query.filter_by(tableid=tableid,password=password).first()
         if(result is None):
-            pass
+            return redirect(url_for('index')), flash("密码错误,已将你重定向到主页")
         else:
             session['password']=password
             session['tableid']=tableid
@@ -132,7 +134,7 @@ def readytofill():
 @app.route('/thelastofus',methods=['GET','POST'])       #
 def thelastofus():
     if session['password'] is None:
-        pass #flash
+        return redirect(url_for('index')),flash("请不要直接来到此页")
     else:
         tableobj=tableinfo.query.get(session['tableid'])
         tablecols=tableobj.tablecols
@@ -140,7 +142,7 @@ def thelastofus():
         i=tablecontent.query.filter_by(tableid=session['tableid']).count()#计数,填写表格人数
         form=mywtform.thelastusform()
         if form.validate_on_submit():
-            filename = tablename+session['tableid']+'.xls'
+            filename = session['tableid']+'.xls'
             if os.path.exists(filename):
                 os.remove(filename)
             book= Workbook(encoding='utf-8')
@@ -160,8 +162,7 @@ def thelastofus():
                 flag=flag+1
             book.save(filename)
             directory = os.getcwd()
-            send_from_directory(directory, filename, as_attachment=True)
-
+            return send_from_directory(directory, filename, as_attachment=True)
     return render_template('thelastofus.html',i=i,form=form)
 
 
