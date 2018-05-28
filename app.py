@@ -45,6 +45,11 @@ def IWantToKnowYouCreate():
         return redirect(url_for('IWantToKnowYou'))
     tableid=session['tableid']
     tablecols=session['tablecols']
+    i = 1
+    while (i <= 10):
+        if (hasattr(mywtform.DynamicForm, str(i))):
+            delattr(mywtform.DynamicForm, str(i))
+        i = i + 1
     i=1
     while(i<=tablecols):
         setattr(mywtform.DynamicForm,str(i),mywtform.StringField('第'+str(i)+'项'))
@@ -81,6 +86,11 @@ def verifyid():
 @app.route('/fillintheform',methods=['GET','POST'])
 def fillintheform():
     if(session['checkid']==True):
+        i=1
+        while(i<=10):
+            if(hasattr(mywtform.fillform,str(i))):
+                delattr(mywtform.fillform,str(i))
+            i=i+1
         tablecols=gettablecols(session['tableid'])
         names=tablecolsname.query.get(session['tableid'])
         nameslist=[]

@@ -14,11 +14,11 @@ class DynamicForm(FlaskForm):
         pass
 
 class readytocreate(FlaskForm):
-    sel=RadioField(choices=[('1','是'),('2','你猜'),('3','好好看看我是谁')])
-    submit=SubmitField('我已经遵从我内心的选择')
+    sel=RadioField(choices=[('1','我打算创建表格-_-'),('2','我打算录入信息^_^'),('3','我能要回我的东西吗-.-')])
+    submit=SubmitField('快,我等不及了')
 
 class verifyidform(FlaskForm):
-    tableid=StringField('告诉我你的真身,master',validators=[required()])
+    tableid=StringField('你的id是多少呢,master',validators=[required()])
     submit=SubmitField('来吧')
 
 class readytofillform(FlaskForm):
